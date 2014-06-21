@@ -1,0 +1,124 @@
+%twocolumn
+\documentclass[10pt,twoside,a4paper]{report}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+%sinc function
+\DeclareMathOperator{\sinc}{sinc}
+%diag fraction
+\usepackage{units}
+%
+\usepackage{mathtools }
+\delimitershortfall=-1pt
+\usepackage{epstopdf}
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{10in}
+\usepackage[margin=.75in]{geometry}
+
+
+%
+\usepackage{textcomp}
+
+%color
+\usepackage[usenames,dvipsnames]{color}
+%for tikz
+\usepackage{tikz}
+\usepackage{pgfplots}
+  \pgfplotsset{compat=newest} 
+  \pgfplotsset{plot coordinates/math parser=false}
+\usetikzlibrary{external}
+\tikzexternalize
+  
+  %for resizing
+ 
+ %chapter redifine
+ 
+ \usepackage{etoolbox}
+ \makeatletter
+ \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+ \makeatother
+ 
+ 
+  \usepackage{anyfontsize}
+%for commenting
+\usepackage{verbatim} 
+% % % % % % % % % % %
+%__________TikZ Stuff
+%\usepackage{tikz}
+%\usepackage{tkz-euclide}
+%\usepackage{pgfplots}
+%\usetikzlibrary{calc}
+% % % % % % % % % %
+%make alpha sections
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+% % % % % % % % % % % % % % % % % % % % % % % % %
+%latinabr
+\usepackage{expl3}
+\ExplSyntaxOn
+\newcommand\latinabbrev[1]{
+  \peek_meaning:NTF . {% Same as \@ifnextchar
+    #1\@}%
+  { \peek_catcode:NTF a {% Check whether next char has same catcode as \'a, i.e., is a letter
+      #1.\@ }%
+    {#1.\@}}}
+\ExplSyntaxOff
+% % % % % % % % % % % % % %
+%header
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\rhead{ASP}
+\rhead{ }
+\cfoot{\thepage}
+\rfoot{Sebastian Grubb (\href{mailto:sg3510@ic.ac.uk}{sg3510@ic.ac.uk})}
+%float block
+\usepackage{float}
+\usepackage[section]{placeins}
+
+%make clickable
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+%adjust chapter name
+\renewcommand\chaptername{Part}
+%make counter use subsections
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{1}
+%usematlab
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+% define the title
+\author{Sebastian Grubb\\
+  \texttt{sg3510@ic.ac.uk}}
+\title{Spectrum Estimation and Adaptive Signal Processing Coursework}
+\date{\today}
+\begin{document}
+\maketitle
+%\hrulefill
+\tableofcontents
+\newpage
+\chapter{Nonparametric Spectrum Estimation}
+\section{Properties of Power Spectral Density (PSD)}
+\paragraph{Approximation in the definition of PSD}
+
+\begin{figure}[h!]
+\centering
+\resizebox{\textwidth}{!}{\input{cw3im/2e_1.tikz}}
+\caption{Comparison of learning rate for various algorithms for time varying coefficients}
+\label{fig:3_2e}
+\end{figure}
+
+
+\begin{thebibliography}{3}
+\bibitem{lofi} Lectures on Fourier Integrals, \textit{Salomon Bochner}, 1959, Princeton University Press
+\bibitem{rayleigh} The Rayleigh Quotient Nuno Vasconcelos, ECE Department, UCSD \url{http://www.svcl.ucsd.edu/courses/ece271B-F09/handouts/Dimensionality3.pdf}
+\end{thebibliography}
+\end{document}
